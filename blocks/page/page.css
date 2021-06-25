@@ -1,6 +1,7 @@
 .page {
   background: #000000;
   max-width: 1280px;
+  min-width: 302px; /* При больших значениях на 320px экранах появляется горизонтальный скролл */
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

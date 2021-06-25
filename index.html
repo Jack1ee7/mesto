@@ -12,23 +12,21 @@
 
 <body class="page">
   <header class="header">
-    <img src="./images/header-logo.png" alt="logo Mesto" class="header__logo">
+    <img src="./images/logo.svg" alt="Логоти Местоп" class="header__logo">
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__info-container">
-        <div class="profile__avatar-container">
-          <img src="./images/avatar.jpg" alt="Profile avatar" class="profile__avatar">
-        </div>
-        <div class="profile__info">
+      <div class="profile__info">
+        <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+        <div class="profile__position">
           <div class="profile__info-text">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__occupation">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button class="profile__edit-button" type="button"></button>
         </div>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="pictures">
       <ul class="pictures__grid">
@@ -43,7 +41,7 @@
           <img src="./images/grid2.jpg" alt="Гора Эльбрус фото" class="pictures__image">
           <div class="pictures__title-container">
             <h3 class="pictures__title">Гора Эльбрус</h3>
-            <button class="pictures__like-button"></button>
+            <button class="pictures__like-button" type="button"></button>
           </div>
         </li>
         <li class="pictures__item">
@@ -83,13 +81,13 @@
   </footer>
   <section class="popup popup_type_edit" id="#popupEdit">
     <div class="popup__container">
-      <form class="popup__form popup__form_type_edit">
-        <button class="popup__close-button" type="reset" id="#closeEdit"></button>
-        <h2 class="popup__form-title">Редактировать профиль</h2>
-        <input class="popup__form-input popup__form-input-name" type="text" name="name" id="#1" placeholder="Имя">
-        <input class="popup__form-input popup__form-input-occupation" type="text" name="name" id="#2"
+      <button class="popup__close-button" type="reset" id="#closeEdit"></button>
+      <h2 class="popup__form-title">Редактировать профиль</h2>
+      <form class="popup__form popup__form_type_edit" name="editProfile">
+        <input class="popup__form-input" type="text" name="Name" id="#inputName" placeholder="Имя">
+        <input class="popup__form-input" type="text" name="Occupation" id="#inputOccupation"
           placeholder="Подпись">
-        <button class="popup__form-submit-button">Сохранить</button>
+        <button class="popup__form-submit-button" type="submit">Сохранить</button>
       </form>
     </div>
   </section>
