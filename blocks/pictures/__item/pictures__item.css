@@ -1,0 +1,7 @@
+.pictures__item {
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 282px;
+}

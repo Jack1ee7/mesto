@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="">
+  <meta name="author" content="Никита Чуканов">
+  <title>Путешествия по России</title>
+</head>
+
+<body class="page border">
+
+  <header class="header">
+    <img src="./images/header-logo.png" alt="logo Mesto" class="header__logo">
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <div class="profile__info-container">
+        <div class="profile__avatar-container">
+          <img src="./images/avatar.jpg" alt="Profile avatar" class="profile__avatar">
+        </div>
+        <div class="profile__info">
+          <div class="profile__info-text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__occupation">Исследователь океана</p>
+          </div>
+          <button class="profile__edit-button"></button>
+        </div>
+      </div>
+      <button class="profile__add-button"></button>
+    </section>
+    <section class="pictures">
+      <li class="pictures__grid">
+        <ul class="pictures__item">
+          <img src="./images/grid1.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Карачаевск</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+        <ul class="pictures__item">
+          <img src="./images/grid2.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Гора Эльбрус</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+        <ul class="pictures__item">
+          <img src="./images/grid3.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Домбай</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+        <ul class="pictures__item">
+          <img src="./images/grid4.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Гора Эльбрус</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+        <ul class="pictures__item">
+          <img src="./images/grid5.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Домбай</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+        <ul class="pictures__item">
+          <img src="./images/grid6.jpg" alt="" class="pictures__image">
+          <div class="pictures__title-container">
+            <p class="pictures__title">Карачаево-Черкессия</p>
+            <button class="pictures__like-button"></button>
+          </div>
+        </ul>
+      </li>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  </footer>
+  <section class="popup popup_type_edit">
+    <div class="popup__form popup__form_type_edit">
+      <p class="popup__form-title">Редактировать профиль</p>
+    </div>
+  </section>
+  <script src="./scripts/main.js"></script>
+</body>
+
+</html>
