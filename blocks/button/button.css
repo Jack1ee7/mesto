@@ -1,0 +1,8 @@
+button {
+  transition: opacity .3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.6;
+}

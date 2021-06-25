@@ -10,7 +10,7 @@
   <title>Путешествия по России</title>
 </head>
 
-<body class="page border">
+<body class="page">
 
   <header class="header">
     <img src="./images/header-logo.png" alt="logo Mesto" class="header__logo">
@@ -84,9 +84,17 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  <section class="popup popup_type_edit">
-    <div class="popup__form popup__form_type_edit">
-      <p class="popup__form-title">Редактировать профиль</p>
+  <section class="popup popup_type_edit" id="#popupEdit">
+    <div class="popup__container">
+      <form class="popup__form popup__form_type_edit">
+        <button class="popup__close-button" type="reset" id="#closeEdit"></button>
+        <p class="popup__form-title">Редактировать профиль</p>
+        <input class="popup__form-input" type="text" name="name" id="#1" placeholder="Имя">
+        <input class="popup__form-input" type="text" name="name" id="#2" placeholder="Подпись">
+        <button class="popup__form-submit-button">
+          <p class="popup__form-button-text">Сохранить</p>
+        </button>
+      </form>
     </div>
   </section>
   <script src="./scripts/main.js"></script>

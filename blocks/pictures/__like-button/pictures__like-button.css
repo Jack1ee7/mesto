@@ -5,6 +5,8 @@
   background-image: url(../../../images/like-button.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
   background-color: #FFFFFF;
   margin-right: 20px;
+  padding: 0;
 }
