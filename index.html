@@ -5,17 +5,15 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="Mesto">
   <meta name="author" content="Никита Чуканов">
-  <title>Путешествия по России</title>
+  <title>Mesto</title>
 </head>
 
 <body class="page">
-
   <header class="header">
     <img src="./images/header-logo.png" alt="logo Mesto" class="header__logo">
   </header>
-
   <main class="content">
     <section class="profile">
       <div class="profile__info-container">
@@ -33,52 +31,51 @@
       <button class="profile__add-button"></button>
     </section>
     <section class="pictures">
-      <li class="pictures__grid">
-        <ul class="pictures__item">
+      <ul class="pictures__grid">
+        <li class="pictures__item">
           <img src="./images/grid1.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Карачаевск</p>
+            <h3 class="pictures__title">Карачаевск</h3>
             <button class="pictures__like-button"></button>
           </div>
-        </ul>
-        <ul class="pictures__item">
+        </li>
+        <li class="pictures__item">
           <img src="./images/grid2.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Гора Эльбрус</p>
+            <h3 class="pictures__title">Гора Эльбрус</h3>
             <button class="pictures__like-button"></button>
           </div>
-        </ul>
-        <ul class="pictures__item">
+        </li>
+        <li class="pictures__item">
           <img src="./images/grid3.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Домбай</p>
+            <h3 class="pictures__title">Домбай</h3>
             <button class="pictures__like-button"></button>
           </div>
-        </ul>
-        <ul class="pictures__item">
+        </li>
+        <li class="pictures__item">
           <img src="./images/grid4.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Гора Эльбрус</p>
+            <h3 class="pictures__title">Гора Эльбрус</h3>
             <button class="pictures__like-button"></button>
           </div>
-        </ul>
-        <ul class="pictures__item">
+        </li>
+        <li class="pictures__item">
           <img src="./images/grid5.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Домбай</p>
+            <h3 class="pictures__title">Домбай</h3>
             <button class="pictures__like-button"></button>
           </div>
-        </ul>
-        <ul class="pictures__item">
+        </li>
+        <li class="pictures__item">
           <img src="./images/grid6.jpg" alt="" class="pictures__image">
           <div class="pictures__title-container">
-            <p class="pictures__title">Карачаево-Черкессия</p>
-            <button class="pictures__like-button"></button>
+            <h3 class="pictures__title">Карачаево-Черкессия</h3>
+            <button class="pictures__like-button pictures__like-button_status_active"></button>
           </div>
-        </ul>
-      </li>
+        </li>
+      </ul>
     </section>
-
   </main>
 
   <footer class="footer">
@@ -88,12 +85,11 @@
     <div class="popup__container">
       <form class="popup__form popup__form_type_edit">
         <button class="popup__close-button" type="reset" id="#closeEdit"></button>
-        <p class="popup__form-title">Редактировать профиль</p>
-        <input class="popup__form-input" type="text" name="name" id="#1" placeholder="Имя">
-        <input class="popup__form-input" type="text" name="name" id="#2" placeholder="Подпись">
-        <button class="popup__form-submit-button">
-          <p class="popup__form-button-text">Сохранить</p>
-        </button>
+        <h2 class="popup__form-title">Редактировать профиль</h2>
+        <input class="popup__form-input popup__form-input-name" type="text" name="name" id="#1" placeholder="Имя">
+        <input class="popup__form-input popup__form-input-occupation" type="text" name="name" id="#2"
+          placeholder="Подпись">
+        <button class="popup__form-submit-button">Сохранить</button>
       </form>
     </div>
   </section>
