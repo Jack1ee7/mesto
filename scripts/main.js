@@ -35,10 +35,12 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   // Получите значение полей jobInput и nameInput из свойства value. При выносе за пределы функции обработчик не считывает данные. Исправить*
   let inputs = [nameInput.value, jobInput.value];
-  // Вставьте новые значения с помощью textContent.
-  editName.textContent = inputs[0];
-  editJob.textContent = inputs[1];
-  closePopup();
+
+  if (inputs[0] !== "" && inputs[1] !== "") {
+    editName.textContent = inputs[0];     // Вставьте новые значения с помощью textContent.
+    editJob.textContent = inputs[1];
+    closePopup();
+  }
 }
 
 // Прикрепляем обработчик к форме:
