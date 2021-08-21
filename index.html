@@ -29,48 +29,7 @@
     </section>
     <section class="pictures">
       <ul class="pictures__grid">
-        <li class="pictures__item">
-          <img src="./images/grid1.jpg" alt="Карачаевск фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Карачаевск</h3>
-            <button class="pictures__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="pictures__item">
-          <img src="./images/grid2.jpg" alt="Гора Эльбрус фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Гора Эльбрус</h3>
-            <button class="pictures__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="pictures__item">
-          <img src="./images/grid3.jpg" alt="Домбай фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Домбай</h3>
-            <button class="pictures__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="pictures__item">
-          <img src="./images/grid4.jpg" alt="Гора Эльбрус фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Гора Эльбрус</h3>
-            <button class="pictures__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="pictures__item">
-          <img src="./images/grid5.jpg" alt="Домбай фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Домбай</h3>
-            <button class="pictures__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="pictures__item">
-          <img src="./images/grid6.jpg" alt="Карачаево-Черкессия фото" class="pictures__image">
-          <div class="pictures__title-container">
-            <h3 class="pictures__title">Карачаево-Черкессия</h3>
-            <button class="pictures__like-button pictures__like-button_status_active" type="button"></button>
-          </div>
-        </li>
+
       </ul>
     </section>
   </main>
@@ -80,7 +39,7 @@
   </footer>
   <section class="popup popup_type_edit" id="#popupEdit">
     <div class="popup__container">
-      <button class="popup__close-button" type="reset" id="#closeEdit"></button>
+      <button class="popup__close-button" type="reset" id="#"></button>
       <h2 class="popup__form-title">Редактировать профиль</h2>
       <form class="popup__form popup__form_type_edit" name="editProfile">
         <input class="popup__form-input" type="text" name="Name" id="#inputName" placeholder="Имя">
@@ -89,6 +48,26 @@
       </form>
     </div>
   </section>
+  <section class="popup popup_type_add" id="#popupAdd">
+    <div class="popup__container">
+      <button class="popup__close-button" type="reset" id="#"></button>
+      <h2 class="popup__form-title">Редактировать профиль</h2>
+      <form class="popup__form popup__form_type_edit" name="editProfile">
+        <input class="popup__form-input" type="text" name="Name" id="#inputName" placeholder="Имя">
+        <input class="popup__form-input" type="text" name="Occupation" id="#inputOccupation" placeholder="Подпись">
+        <button class="popup__form-submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <template id="pictureCard">
+    <li class="pictures__item">
+      <img src="" alt="" class="pictures__image">
+      <div class="pictures__title-container">
+        <h3 class="pictures__title"></h3>
+        <button class="pictures__like-button"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/main.js"></script>
 </body>
 
