@@ -35,12 +35,10 @@ function showPopup(popupElement) {
 //Отображение попапа Edit
 const editPopup = container.querySelector(".popup_type_edit");
 const editButton = container.querySelector(".profile__edit-button");
-editPopup
-  .querySelector(".popup__close-button")
-  .addEventListener("click", function () {
-    //закрытие
-    closePopup(editPopup);
-  });
+editPopup.querySelector(".popup__close-button").addEventListener("click", function () {
+  //закрытие
+  closePopup(editPopup);
+});
 editButton.addEventListener("click", function () {
   showPopup(editPopup);
 });
@@ -48,12 +46,10 @@ editButton.addEventListener("click", function () {
 //отображение попапа add
 const addButton = container.querySelector(".profile__add-button");
 const addPopup = container.querySelector(".popup_type_add");
-addPopup
-  .querySelector(".popup__close-button")
-  .addEventListener("click", function () {
-    //закрытие
-    closePopup(addPopup);
-  });
+addPopup.querySelector(".popup__close-button").addEventListener("click", function () {
+  //закрытие
+  closePopup(addPopup);
+});
 addButton.addEventListener("click", function () {
   showPopup(addPopup);
 });
@@ -110,6 +106,7 @@ const initialCards = [
 function addCard(linkValue, titleValue) {
   const pictureElement = pictureTemplate.querySelector(".pictures__item").cloneNode(true);
   pictureElement.querySelector(".pictures__image").src = linkValue;
+  pictureElement.querySelector(".pictures__image").alt = titleValue;
   pictureElement.querySelector(".pictures__title").textContent = titleValue;
   pictureElement.querySelector(".pictures__like-button").addEventListener("click", function () {
     pictureElement.querySelector(".pictures__like-button").classList.toggle("pictures__like-button_status_active");
