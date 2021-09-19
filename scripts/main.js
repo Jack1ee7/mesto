@@ -6,11 +6,11 @@ const picturePopup = container.querySelector('.popup_type_picture');
 const formEdit = container.querySelector(".popup__form_type_edit");
 const formAdd = container.querySelector('.popup__form_type_add');
 // Находим поля формы edit в DOM
-const nameInput = document.getElementById("#inputName");
-const jobInput = document.getElementById("#inputOccupation");
+const nameInput = document.getElementById("name");
+const jobInput = document.getElementById("occupation");
 // Находим поля формы add в DOM
-const titleInput = document.getElementById("#inputTitle");
-const linkInput = document.getElementById("#inputLink");
+const titleInput = document.getElementById("title");
+const linkInput = document.getElementById("link");
 // Выберите элементы, куда должны быть вставлены значения полей. edit
 const bio = container.querySelector(".profile__info-text");
 const editName = bio.querySelector(".profile__name");
@@ -139,4 +139,24 @@ function addCardSubmit(evt) {
     closePopup(addPopup);
   }
 }
+
 formAdd.addEventListener("submit", addCardSubmit);
+
+const popupList = [picturePopup, editPopup, addPopup];
+const closeAll = (popups) => {
+  popups.forEach((element) => {
+    closePopup(element);
+  });
+};
+document.addEventListener('keydown', (event) => {
+  if (event.key === "Escape") {
+    closeAll(popupList);
+  }
+});
+
+const overlayList = Array.from(container.querySelectorAll('.overlay'));
+overlayList.forEach(element => {
+  element.addEventListener('click', function () {
+    closeAll(popupList);
+  });
+});
