@@ -10,12 +10,15 @@
 
 [Ссылка на макет в Figma. 5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
 
+[Ссылка на макет в Figma. 6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+
 ## Функционал:
 
 * Адаптивный дизайн
 * Открытие и закрытие форм по клику на кнопки
 * Изменение имени и описания профиля
 * Добавление и удаление карточек
+* Валидация форм
 
 ## Технологии:
 
