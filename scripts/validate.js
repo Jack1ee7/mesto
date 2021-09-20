@@ -34,7 +34,7 @@ const hasNotInputValues = (inputList) => {
 
 const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.add(inactiveButtonClass);
-  buttonElement.setAttribute("disabled", "disabled");;
+  buttonElement.setAttribute("disabled", "disabled");
 };
 
 const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
