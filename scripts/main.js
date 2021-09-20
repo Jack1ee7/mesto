@@ -131,7 +131,7 @@ function renderCard(card) {
   picturesContainer.prepend(card);
 }
 
-initialCards.forEach(function (Element) {
+initialCardsList.forEach(function (Element) {
   renderCard(createCard(Element));
 });
 
