@@ -54,7 +54,7 @@ function closePopup(popupElement) {
 };
 
 picturePopup.querySelector('.popup__close-button').addEventListener('click', function () {
-  closePopup(picturePopup)
+  closePopup(picturePopup);
 });
 
 
@@ -99,7 +99,7 @@ const disableButton = (element) => {
   const button = element.querySelector('.popup__form-submit-button');
   button.setAttribute("disabled", "disabled");
   button.classList.add('popup__form-submit-button_disabled');
-}
+};
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -118,18 +118,45 @@ function createCard(data) {
   });
   card.querySelector('.pictures__delete-button').addEventListener('click', function () { //удаление карточки
     card.remove();
-  })
+  });
   card.querySelector(".pictures__image").addEventListener('click', function () { //открытие попапа по клику на картинку
     showPopup(picturePopup);
     picturePopupImage.src = data.link;
     picturePopupImage.alt = data.title;
     picturePopupCaption.textContent = data.title;
-  })
+  });
   return card;
 }
 function renderCard(card) {
   picturesContainer.prepend(card);
 }
+
+const initialCards = [
+  {
+    title: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    title: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    title: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    title: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    title: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    title: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
 
 initialCards.forEach(function (Element) {
   renderCard(createCard(Element));
@@ -141,7 +168,7 @@ function addCardSubmit(evt) {
   const formAddCardInputValues = {
     title: titleInput.value,
     link: linkInput.value
-  }
+  };
   if (formAddCardInputValues.link !== "" && formAddCardInputValues.title !== "") {
     renderCard(createCard(formAddCardInputValues));
     formAdd.reset();
