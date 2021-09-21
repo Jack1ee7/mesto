@@ -61,6 +61,8 @@ editButton.addEventListener("click", function () {
   clearValidationErrors(popupEditProfile);
   nameInput.value = editName.textContent;
   jobInput.value = editJob.textContent;
+  const buttonElement = popupEditProfile.querySelector('.popup__form-submit-button');
+  enableSubmitButton(buttonElement, "popup__form-submit-button_disabled");
 });
 
 //отображение попапа add
@@ -86,14 +88,7 @@ function formEditProfileSubmitHandler(evt) {
     editJob.textContent = jobInput.value;
     formEdit.reset();
     closePopup(popupEditProfile);
-    disableButton(popupEditProfile);
-  }
-}
-
-const disableButton = (element) => {
-  const button = element.querySelector('.popup__form-submit-button');
-  button.setAttribute("disabled", "disabled");
-  button.classList.add('popup__form-submit-button_disabled');
+  };
 };
 
 // Прикрепляем обработчик к форме:
@@ -168,7 +163,8 @@ function addCardSubmit(evt) {
     renderCard(createCard(formAddCardInputValues));
     formAdd.reset();
     closePopup(popupAddCard);
-    disableButton(popupAddCard);
+    const buttonElement = popupAddCard.querySelector('.popup__form-submit-button');
+    disableSubmitButton(buttonElement, "popup__form-submit-button_disabled");
   }
 }
 
