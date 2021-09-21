@@ -21,41 +21,32 @@ const editJob = bio.querySelector(".profile__occupation");
 //открытие popup
 function showPopup(popupElement) {
   popupElement.classList.add("popup_status_opened");
-  document.addEventListener('keydown', (event) => {
-    if (event.key === "Escape") {
-      closePopup(popupElement);
-    }
-  });
-  popupElement.querySelector('.overlay').addEventListener('click', function () {
-    closePopup(popupElement);
-  });
+  document.addEventListener('keydown', popupKeydownHandler);
+  popupElement.querySelector('.overlay').addEventListener('click', closeOpenedPopup);
 };
+
+const popupKeydownHandler = (evt) => {
+  if (evt.key === "Escape") {
+    closeOpenedPopup();
+  };
+};
+
+const closeOpenedPopup = () => {
+  const openedPopup = document.querySelector('.popup_status_opened');
+  closePopup(openedPopup);
+}
 
 //закрытие popup
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_status_opened");
-  document.removeEventListener('keydown', (event) => {
-    if (event.key === "Escape") {
-      closePopup(popupElement);
-    }
-  });
-  popupElement.querySelector('.overlay').removeEventListener('click', function () {
-    closePopup(popupElement);
-  });
-  Array.from(popupElement.querySelectorAll('.popup__error_status_visible')).forEach(Element => { //Удаление текста ошибки при закрытии попапа
-    Element.textContent = '';
-  })
-  Array.from(popupElement.querySelectorAll('.popup__input')).forEach(Element => {
-    Element.classList.remove('popup__error');
-  });
-   if (popupElement.querySelector('.popup__form')) {
-     popupElement.querySelector('.popup__form').reset();
-   }
+  document.removeEventListener('keydown', popupKeydownHandler);
+  popupElement.querySelector('.overlay').removeEventListener('click', closeOpenedPopup);
 };
 
 picturePopup.querySelector('.popup__close-button').addEventListener('click', function () {
   closePopup(picturePopup);
 });
+
 
 
 //Отображение попапа Edit
@@ -67,6 +58,9 @@ popupEditProfile.querySelector(".popup__close-button").addEventListener("click",
 });
 editButton.addEventListener("click", function () {
   showPopup(popupEditProfile);
+  clearValidationErrors(popupEditProfile);
+  nameInput.value = editName.textContent;
+  jobInput.value = editJob.textContent;
 });
 
 //отображение попапа add
@@ -78,6 +72,7 @@ popupAddCard.querySelector(".popup__close-button").addEventListener("click", fun
 });
 addButton.addEventListener("click", function () {
   showPopup(popupAddCard);
+  clearValidationErrors(popupAddCard);
 });
 
 // Обработчик «отправки» формы edit, хотя пока

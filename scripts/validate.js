@@ -68,6 +68,16 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, inp
   toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
 };
 
+const clearValidationErrors = (popupElement) => {
+  Array.from(popupElement.querySelectorAll('.popup__error_status_visible')).forEach(Element => { //Удаление текста ошибки при закрытии попапа
+    Element.textContent = '';
+  });
+  Array.from(popupElement.querySelectorAll('.popup__input')).forEach(Element => { // удаление красного цвета
+    Element.classList.remove('popup__error');
+  });
+    popupElement.querySelector('.popup__form').reset(); // очистка формы
+};
+
 const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach(formElement => {
