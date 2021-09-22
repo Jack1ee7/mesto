@@ -154,7 +154,7 @@ initialCards.forEach(function (Element) {
 });
 
 // обработчик «отправки» формы add
-const buttonElement = popupAddCard.querySelector('.popup__form-submit-button');
+const buttonElementAddCard = popupAddCard.querySelector('.popup__form-submit-button');
 function addCardSubmit(evt) {
   evt.preventDefault();
   const formAddCardInputValues = {
@@ -165,7 +165,6 @@ function addCardSubmit(evt) {
     renderCard(createCard(formAddCardInputValues));
     formAdd.reset();
     closePopup(popupAddCard);
-    const buttonElementAddCard = popupAddCard.querySelector('.popup__form-submit-button');
     disableSubmitButton(buttonElementAddCard, disabledButtonSelector);
   }
 }
