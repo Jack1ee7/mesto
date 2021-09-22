@@ -17,6 +17,7 @@ const linkInput = document.getElementById("link");
 const bio = container.querySelector(".profile__info-text");
 const editName = bio.querySelector(".profile__name");
 const editJob = bio.querySelector(".profile__occupation");
+const disabledButtonSelector = "popup__form-submit-button_disabled";
 
 //открытие popup
 function showPopup(popupElement) {
@@ -52,6 +53,7 @@ picturePopup.querySelector('.popup__close-button').addEventListener('click', fun
 //Отображение попапа Edit
 const popupEditProfile = container.querySelector(".popup_type_edit");
 const editButton = container.querySelector(".profile__edit-button");
+const buttonElementEditProfile = popupEditProfile.querySelector('.popup__form-submit-button');
 popupEditProfile.querySelector(".popup__close-button").addEventListener("click", function () {
   //закрытие
   closePopup(popupEditProfile);
@@ -61,8 +63,7 @@ editButton.addEventListener("click", function () {
   clearValidationErrors(popupEditProfile);
   nameInput.value = editName.textContent;
   jobInput.value = editJob.textContent;
-  const buttonElement = popupEditProfile.querySelector('.popup__form-submit-button');
-  enableSubmitButton(buttonElement, "popup__form-submit-button_disabled");
+  enableSubmitButton(buttonElementEditProfile, disabledButtonSelector);
 });
 
 //отображение попапа add
@@ -153,6 +154,7 @@ initialCards.forEach(function (Element) {
 });
 
 // обработчик «отправки» формы add
+const buttonElement = popupAddCard.querySelector('.popup__form-submit-button');
 function addCardSubmit(evt) {
   evt.preventDefault();
   const formAddCardInputValues = {
@@ -163,8 +165,8 @@ function addCardSubmit(evt) {
     renderCard(createCard(formAddCardInputValues));
     formAdd.reset();
     closePopup(popupAddCard);
-    const buttonElement = popupAddCard.querySelector('.popup__form-submit-button');
-    disableSubmitButton(buttonElement, "popup__form-submit-button_disabled");
+    const buttonElementAddCard = popupAddCard.querySelector('.popup__form-submit-button');
+    disableSubmitButton(buttonElementAddCard, disabledButtonSelector);
   }
 }
 
