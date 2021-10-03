@@ -1,6 +1,6 @@
 import FormValidator from "./FormValidator.js";
 import { initialCards } from "./initial-cards.js";
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 
 const config = {
   formSelector: ".popup__form",
@@ -25,18 +25,18 @@ const jobInput = document.getElementById("occupation");
 const titleInput = document.getElementById("title");
 const linkInput = document.getElementById("link");
 // Выберите элементы, куда должны быть вставлены значения полей. edit
-const bio = container.querySelector(".profile__info-text");
-const editName = bio.querySelector(".profile__name");
-const editJob = bio.querySelector(".profile__occupation");
+const profile = container.querySelector(".profile__info-text");
+const profileName = profile.querySelector(".profile__name");
+const profileOccupation = profile.querySelector(".profile__occupation");
 
 const formAddValidation = new FormValidator(config, formAdd);
 const formEditValidation = new FormValidator(config, formEdit);
+
 
 //открытие popup
 export function showPopup(popupElement) {
   popupElement.classList.add("popup_status_opened");
   document.addEventListener('keydown', popupKeydownHandler);
-  popupElement.querySelector('.overlay').addEventListener('click', closeOpenedPopup);
 };
 
 const popupKeydownHandler = (evt) => {
@@ -50,11 +50,17 @@ const closeOpenedPopup = () => {
   closePopup(openedPopup);
 }
 
+//обработчик закрытия попапа по клику на оверлей
+Array.from(document.querySelectorAll('.popup')).forEach(popup => {
+  popup.querySelector('.overlay').addEventListener('click', closeOpenedPopup);
+})
+
+
+
 //закрытие popup
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_status_opened");
   document.removeEventListener('keydown', popupKeydownHandler);
-  popupElement.querySelector('.overlay').removeEventListener('click', closeOpenedPopup);
 };
 
 picturePopup.querySelector('.popup__close-button').addEventListener('click', function () {
@@ -72,10 +78,9 @@ popupEditProfile.querySelector(".popup__close-button").addEventListener("click",
 });
 editButton.addEventListener("click", function () {
   formEditValidation.resetState();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileOccupation.textContent;
   showPopup(popupEditProfile);
-  nameInput.value = editName.textContent;
-  jobInput.value = editJob.textContent;
-  // enableSubmitButton(buttonElementEditProfile, disabledButtonSelector);
 });
 
 //отображение попапа add
@@ -97,48 +102,39 @@ function formEditProfileSubmitHandler(evt) {
   // Эта строчка отменяет стандартную отправку формы.
   evt.preventDefault();
   // Получите значение полей jobInput и nameInput из свойства value.
-  if (nameInput.value !== "" && jobInput.value !== "") {
-    editName.textContent = nameInput.value; // Вставьте новые значения с помощью textContent.
-    editJob.textContent = jobInput.value;
-    formEdit.reset();
-    closePopup(popupEditProfile);
-  };
+  profileName.textContent = nameInput.value; // Вставьте новые значения с помощью textContent.
+  profileOccupation.textContent = jobInput.value;
+  formEdit.reset();           //!!!если убрать то кнопка не становиться disabled исправить!!!
+  closePopup(popupEditProfile);
 };
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formEdit.addEventListener("submit", formEditProfileSubmitHandler);
 
-
-function createCard(data) {            // функция создания новой карточки
+function renderCard(data) {
   const cardNew = new Card(data, pictureTemplate);
   const elementData = cardNew.createCard();
-  return elementData;
-}
-
-function renderCard(card) {
-  picturesContainer.prepend(card);
+  picturesContainer.prepend(elementData);
 }
 
 initialCards.forEach(function (Element) {
-  renderCard(createCard(Element));
+  renderCard(Element);
 });
 
 // обработчик «отправки» формы add
-function addCardSubmit(evt) {
+function submitAddCard(evt) {
   evt.preventDefault();
   const formAddCardInputValues = {
     title: titleInput.value,
     link: linkInput.value
   };
-  if (formAddCardInputValues.link !== "" && formAddCardInputValues.title !== "") {
-    renderCard(createCard(formAddCardInputValues));
+    renderCard(formAddCardInputValues);
     formAdd.reset();
     closePopup(popupAddCard);
-  }
 }
 
-formAdd.addEventListener("submit", addCardSubmit);
+formAdd.addEventListener("submit", submitAddCard);
 
 formEditValidation.enableValidation();
 formAddValidation.enableValidation();

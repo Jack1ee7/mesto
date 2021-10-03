@@ -8,6 +8,7 @@ export default class FormValidator {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = formElement.querySelector(this._submitButtonSelector);
 
   }
 
@@ -39,29 +40,22 @@ export default class FormValidator {
     });
   }
 
-  _hasNotInputValues() {
-    return this._inputList.every((inputElement) => {
-      return inputElement.value.length === 0;
-    });
-  }
-
-  _disableSubmitButton (buttonElement) {
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+  _disableSubmitButton () {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   };
 
-  _enableSubmitButton (buttonElement) {
-    buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+  _enableSubmitButton () {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
   };
 
   _toggleButtonState () {
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-    if (this._hasInvalidInput() || this._hasNotInputValues()) {
-        this._disableSubmitButton(buttonElement);
+    if (this._hasInvalidInput()) {
+        this._disableSubmitButton(this._buttonElement);
     } else {
-        this._enableSubmitButton(buttonElement);
+        this._enableSubmitButton(this._buttonElement);
     }
   }
 
@@ -70,9 +64,7 @@ export default class FormValidator {
       event.preventDefault();
     });
 
-    // const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._inputList.forEach(inputElement => {
-      this._hideInputError(inputElement);
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList);
