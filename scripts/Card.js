@@ -12,7 +12,7 @@ export class Card {
   }
 
   _toggleLike() {
-    this._element.querySelector(".pictures__like-button").classList.toggle('pictures__like-button_status_active');
+    this._likeButton.classList.toggle('pictures__like-button_status_active');
   };
 
   _removeCard() {

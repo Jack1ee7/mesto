@@ -129,9 +129,9 @@ function submitAddCard(evt) {
     title: titleInput.value,
     link: linkInput.value
   };
-    renderCard(formAddCardInputValues);
-    formAdd.reset();
-    closePopup(popupAddCard);
+  renderCard(formAddCardInputValues);
+  formAdd.reset();
+  closePopup(popupAddCard);
 }
 
 formAdd.addEventListener("submit", submitAddCard);
