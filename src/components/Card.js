@@ -1,10 +1,13 @@
-import { showPopup, picturePopup } from "./index.js";
+import { picturePopup } from "../pages/index.js";
+import Popup from "./Popup.js";
 
 export class Card {
-  constructor(data, templateSelector) {
-    this._link = data.link;
-    this._title = data.title;
-    this._templateSelector = templateSelector
+  constructor(data, templateSelector, handleCardClick) {
+    this._link = data.Link;
+    this._title = data.Title;
+    this._templateSelector = templateSelector;
+    this._picturePopup = document.querySelector(picturePopup);
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector(".pictures__item").cloneNode(true); //!
@@ -28,24 +31,23 @@ export class Card {
       this._removeCard();
     })
     this._element.querySelector('.pictures__image').addEventListener('click', () => {
-      this._openPicturePopupHandler();
-    })
+      this._handleCardClick(this._link, this._title);
+    });
   }
-
-  _openPicturePopupHandler() {
-    document.querySelector('.popup__picture').src = this._link;
-    document.querySelector('.popup__picture').alt = this._title;
-    document.querySelector(".popup__picture-caption").textContent = this._title;
-    showPopup(picturePopup);
-  }
+  // _openPicturePopupHandler() {
+  //   // this._picturePopup.querySelector('.popup__picture').src = this._link;
+  //   // this._picturePopup.querySelector('.popup__picture').alt = this._title;
+  //   // this._picturePopup.querySelector(".popup__picture-caption").textContent = this._title;
+  //   this._cardImage.addEventListener('click', () => this._handleOpenPicture(this._link, this._title);
+  // }
 
   createCard() {
     this._element = this._getTemplate();
     this._likeButton = this._element.querySelector('.pictures__like-button');
-    this._setEventListeners();
     this._element.querySelector('.pictures__image').src = this._link;
     this._element.querySelector('.pictures__title').textContent = this._title;
     this._element.querySelector('.pictures__image').alt = this._title;
+    this._setEventListeners();
     return this._element;
   }
 }
