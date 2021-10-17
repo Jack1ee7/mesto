@@ -1,4 +1,5 @@
 import './index.css'
+import html from "../index.html";
 
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -49,6 +50,7 @@ popupWithImage.setEventListeners();
 const popupWithFormEdit = new PopupWithForm('.popup_type_edit', (data) => {
   userInfo.setUserInfo(data);
   popupWithFormEdit.close();
+  formEditValidation.disableSubmitButton();
 })
 
 editButton.addEventListener('click', () => {
@@ -62,6 +64,7 @@ const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
   const elementData = cardNew.createCard();
   renderCard.addItem(elementData);
   popupWithFormAdd.close();
+  formAddValidation.disableSubmitButton();
 })
 
 addButton.addEventListener('click', () => {
