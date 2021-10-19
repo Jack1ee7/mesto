@@ -1,5 +1,5 @@
-import { picturePopup } from "../pages/index.js";
-import Popup from "./Popup.js";
+import { picturePopup } from "../utils/constants.js";
+// import Popup from "./Popup.js";
 
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
