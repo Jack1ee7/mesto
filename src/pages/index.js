@@ -32,7 +32,7 @@ editButton.addEventListener('click', () => {
 popupWithFormEdit.setEventListeners();
 
 const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
-  createCard(data);
+  renderCard.addItem(createCard(data));
   popupWithFormAdd.close();
 })
 
@@ -50,13 +50,13 @@ function handleCardClick(link, title) {
 function createCard(item) {
   const cardNew = new Card(item, pictureTemplate, handleCardClick);
   const elementData = cardNew.createCard();
-  renderCard.addItem(elementData);
+  return elementData;
 }
 
 const renderCard = new Section ({
   cardList: initialCards,
   renderer: (cardListItem) => {
-    createCard(cardListItem);
+    renderCard.addItem(createCard(cardListItem));
   }
 }, picturesContainer);
 
