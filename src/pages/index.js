@@ -32,7 +32,7 @@ editButton.addEventListener('click', () => {
 popupWithFormEdit.setEventListeners();
 
 const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
-  renderCard.addItem(createCard(data));
+  cardsSection.addItem(createCard(data));
   popupWithFormAdd.close();
 })
 
@@ -53,14 +53,14 @@ function createCard(item) {
   return elementData;
 }
 
-const renderCard = new Section ({
+const cardsSection = new Section ({
   cardList: initialCards,
   renderer: (cardListItem) => {
-    renderCard.addItem(createCard(cardListItem));
+    cardsSection.addItem(createCard(cardListItem));
   }
 }, picturesContainer);
 
-renderCard.renderCard();
+cardsSection.renderCard();
 
 formEditValidation.enableValidation();
 formAddValidation.enableValidation();
