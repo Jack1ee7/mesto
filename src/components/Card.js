@@ -3,8 +3,8 @@ import { picturePopup } from "../utils/constants.js";
 
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
-    this._link = data.Link;
-    this._title = data.Title;
+    this._link = data.link;
+    this._title = data.name;
     this._templateSelector = templateSelector;
     this._picturePopup = document.querySelector(picturePopup);
     this._handleCardClick = handleCardClick;

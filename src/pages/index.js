@@ -3,7 +3,7 @@ import html from "../index.html";
 
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import { initialCards, picturePopup, config, formAdd, formEdit, profileName, profileOccupation, editButton, addButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
+import { picturePopup, config, formAdd, formEdit, profileName, profileOccupation, editButton, addButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
@@ -23,16 +23,17 @@ const api = new Api ({
 api.getAllData()
   .then(([userData, cardList]) => {
     // profileId = userData._id;
-    cardsSection.addItem(createCard(cardList));
-    userInfo.setUserInfo(userData)
-    cardsSection.renderCard
-    .catch((err) => {
-      console.log(`Ошибка ${err}`);
-    });
+    // userInfo.setUserInfo(userData)
+    cardsSection.addItem(cardsSection.renderCard(cardList))
   })
+  .catch((err) => {
+    console.log(`Ошибка ${err}`);
+  });
 //Validation
 const formAddValidation = new FormValidator(config, formAdd);
 const formEditValidation = new FormValidator(config, formEdit);
+formEditValidation.enableValidation();
+formAddValidation.enableValidation();
 //userinfo
 const userInfo = new UserInfo (profileName, profileOccupation);
 //popupOverlay
@@ -69,18 +70,14 @@ function handleCardClick(link, title) {
 
 function createCard(item) {
   const cardNew = new Card(item, pictureTemplate, handleCardClick);
+  console.log(item)
   const elementData = cardNew.createCard();
   return elementData;
 }
 
 const cardsSection = new Section ({
-  cardList: initialCards,
   renderer: (cardListItem) => {
     cardsSection.addItem(createCard(cardListItem));
   }
 }, picturesContainer);
 
-cardsSection.renderCard();
-
-formEditValidation.enableValidation();
-formAddValidation.enableValidation();
