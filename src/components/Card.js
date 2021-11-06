@@ -34,12 +34,6 @@ export class Card {
       this._handleCardClick(this._link, this._title);
     });
   }
-  // _openPicturePopupHandler() {
-  //   // this._picturePopup.querySelector('.popup__picture').src = this._link;
-  //   // this._picturePopup.querySelector('.popup__picture').alt = this._title;
-  //   // this._picturePopup.querySelector(".popup__picture-caption").textContent = this._title;
-  //   this._cardImage.addEventListener('click', () => this._handleOpenPicture(this._link, this._title);
-  // }
 
   createCard() {
     this._element = this._getTemplate();

@@ -9,16 +9,36 @@ import PopupWithImage from "../components/PopupWithImage.js";
 
 import { Card } from "../components/Card.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from '../components/Api';
 
+//API
+const api = new Api ({
+  url: 'https://nomoreparties.co/v1/cohort-29',
+  headers: {
+    authorization: 'e988ea36-545d-4f3e-92ac-906bbdf6b61d',
+    'Content-Type': 'application/json'
+  }
+})
 
-
+api.getAllData()
+  .then(([userData, cardList]) => {
+    // profileId = userData._id;
+    cardsSection.addItem(createCard(cardList));
+    userInfo.setUserInfo(userData)
+    cardsSection.renderCard
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
+    });
+  })
+//Validation
 const formAddValidation = new FormValidator(config, formAdd);
 const formEditValidation = new FormValidator(config, formEdit);
-
+//userinfo
 const userInfo = new UserInfo (profileName, profileOccupation);
+//popupOverlay
 const popupWithImage = new PopupWithImage(picturePopup);
 popupWithImage.setEventListeners();
-
+//popupEdit
 const popupWithFormEdit = new PopupWithForm('.popup_type_edit', (data) => {
   userInfo.setUserInfo(data);
   popupWithFormEdit.close();
@@ -30,7 +50,7 @@ editButton.addEventListener('click', () => {
 });
 
 popupWithFormEdit.setEventListeners();
-
+//popupAddCard
 const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
   cardsSection.addItem(createCard(data));
   popupWithFormAdd.close();
