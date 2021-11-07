@@ -13,10 +13,13 @@ export const picturesContainer = (".pictures__grid");
 export const picturePopup = ('.popup_type_picture');
 export const formEdit = container.querySelector(".popup__form_type_edit");
 export const formAdd = container.querySelector('.popup__form_type_add');
+export const formAvatar = container.querySelector('.popup__form_type_avatar');
 export const profileName = (".profile__name");
 export const profileOccupation = (".profile__occupation");
+export const profileAvatar = (".profile__avatar");
 export const editButton = container.querySelector(".profile__edit-button");
 export const addButton = container.querySelector(".profile__add-button");
+export const avatarButton = container.querySelector(".profile__avatar");
 
 export const initialCards = [
   {

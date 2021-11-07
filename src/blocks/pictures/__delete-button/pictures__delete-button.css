@@ -10,6 +10,7 @@
   padding: 0;
   transition: opacity .3s ease;
   cursor: pointer;
+  visibility: hidden;
 }
 
 .pictures__delete-button:hover {
