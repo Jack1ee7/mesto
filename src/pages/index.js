@@ -62,8 +62,10 @@ popupWithFormEdit.setEventListeners();
 
 //popupAddCard
 const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
-  cardsSection.addItem(createCard(data));
-  api.sendNewCard(data);
+  api.sendNewCard(data)
+    .then((item) => {
+      cardsSection.addItem(createCard(item));
+    });
   popupWithFormAdd.close();
 })
 
@@ -89,20 +91,26 @@ avatarButton.addEventListener('click', () => {
 popupAvatar.setEventListeners();
 
 //popupDeleteCard
-const popupDelete = new PopupDelete('.popup_type_delete');
+const popupDelete = new PopupDelete('.popup_type_delete', (id) => {
+  console.log(id);
+  api.deleteCard(id)
+    .then(() => {
+      document.getElementById(id).remove()
+    })
+});
 popupDelete.setEventListeners();
 
-//
+//-------------------------
 function handleCardClick(link, title) {
   popupWithImage.open(link, title);
 }
 
-function handleCardDelete() {
-
+function handleOpenDelete() {
+  popupDelete.open();
 }
 
 function createCard(item) {
-  const cardNew = new Card(item, pictureTemplate, handleCardClick, handleCardDelete);
+  const cardNew = new Card(item, pictureTemplate, api, handleCardClick, handleOpenDelete);
   const elementData = cardNew.createCard();
   return elementData;
 }
