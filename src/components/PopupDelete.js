@@ -12,16 +12,17 @@ export default class PopupWithForm extends Popup {
     super.close();
   };
 
-  open(id) {
+  open(id, card) {
     super.open();
     this._id = id;
+    this._card = card;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this._handleDelete(this._id);
+      this._handleDelete(this._id, this._card);
     });
   };
 };

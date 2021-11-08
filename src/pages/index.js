@@ -2,7 +2,7 @@ import './index.css'
 
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import {popupAddSubmitButton, popupDeleteSubmitButton, popupEditSubmitButton, popupAvatarSubmitButton ,picturePopup, config, formAdd, formEdit, inputsFormEdit, formAvatar, profileName, profileNameElement, profileOccupation, profileAvatar, editButton, addButton, avatarButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
+import {popupAddSubmitButton, popupDeleteSubmitButton, popupEditSubmitButton, popupAvatarSubmitButton ,picturePopup, config, formAdd, formEdit, inputEditName, inputEditOccupation, formAvatar, profileName, profileNameElement, profileOccupation, profileAvatar, editButton, addButton, avatarButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupDelete from "../components/PopupDelete.js";
@@ -54,8 +54,8 @@ const popupWithFormEdit = new PopupWithForm('.popup_type_edit', (data) => {
 
 editButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo()
-  inputsFormEdit[0].value = userData.name;
-  inputsFormEdit[1].value = userData.occupation;
+  inputEditName.value = userData.name;
+  inputEditOccupation.value = userData.occupation;
   popupWithFormEdit.open();
   formEditValidation.disableSubmitButton();
 });
@@ -109,11 +109,11 @@ avatarButton.addEventListener('click', () => {
 popupAvatar.setEventListeners();
 
 //popupDeleteCard
-const popupDelete = new PopupDelete('.popup_type_delete', (id) => {
+const popupDelete = new PopupDelete('.popup_type_delete', (id, card) => {
   popupDelete.renderLoading(true, popupDeleteSubmitButton)
   api.deleteCard(id)
     .then(() => {
-      removeCard(document.getElementById(id))
+      card.removeCard();
       popupDelete.close();
     })
     .catch((err) => {
@@ -126,37 +126,33 @@ const popupDelete = new PopupDelete('.popup_type_delete', (id) => {
 popupDelete.setEventListeners();
 
 //-------------------------
-function removeCard(element) {
-  element.remove();
-  element = null;
-}
 
 function handleCardClick(link, title) {
   popupWithImage.open(link, title);
 }
 
-function handleOpenDelete(id) {
-  popupDelete.open(id);
-}
-
-function handleLike(likeButtonElement, likeCounterElement, cardId) {  //обработчик постановки и снятия лайков, загрузки данных на сервер
-  if (!(likeButtonElement.classList.contains('pictures__like-button_status_active'))) {
-    api.addLike(cardId)
-      .then((data) => {
-        likeButtonElement.classList.add('pictures__like-button_status_active');
-        likeCounterElement.textContent = data.likes.length;
-      })
-  } else {
-    api.removeLike(cardId)
-      .then((data) => {
-        likeButtonElement.classList.remove('pictures__like-button_status_active');
-        likeCounterElement.textContent = data.likes.length;
-      })
-    }
-}
-
 function createCard(item) {
-  const cardNew = new Card(item, pictureTemplate, profileNameElement.id , handleCardClick, handleOpenDelete, handleLike);
+  const cardNew = new Card(
+    item,
+    pictureTemplate,
+    profileNameElement.id ,
+    handleCardClick,
+    function handleOpenDelete(id) {
+      popupDelete.open(id, cardNew);
+    },
+    function handleLike(likeButtonElement) {
+      if (!(likeButtonElement.classList.contains('pictures__like-button_status_active'))) {
+        api.addLike(item._id)
+          .then((data) => {
+            cardNew.addLike(data);
+        })
+      } else {
+        api.removeLike(item._id)
+          .then((data) => {
+            cardNew.removeLike(data);
+        })
+      }
+    });
   const elementData = cardNew.createCard();
   return elementData;
 }
