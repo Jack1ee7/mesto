@@ -14,10 +14,24 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
-    this._name.textContent = data.name;
-    this._occupation.textContent = data.about;
+    if (data.name) {
+      this._name.textContent = data.name;
+    }
+    if (data._id) {
+      this._name.id = data._id;
+    }
+    if (data.about) {
+      this._occupation.textContent = data.about;
+    }
   }
   setUserAvatar(data) {
-    this._avatar.src = data.avatar;
+    if (data.avatar) {
+      this._avatar.src = data.avatar;
+    }
   }
+
+  // getUserId(data) {
+  //   return this._id = data._id;
+  // }
+
 }

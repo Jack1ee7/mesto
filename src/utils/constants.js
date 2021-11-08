@@ -12,9 +12,11 @@ export const pictureTemplate = ("#pictureCard"); //Card template
 export const picturesContainer = (".pictures__grid");
 export const picturePopup = ('.popup_type_picture');
 export const formEdit = container.querySelector(".popup__form_type_edit");
+export const inputsFormEdit = Array.from(formEdit.querySelectorAll(".popup__input"));
 export const formAdd = container.querySelector('.popup__form_type_add');
 export const formAvatar = container.querySelector('.popup__form_type_avatar');
 export const profileName = (".profile__name");
+export const profileNameElement = container.querySelector(".profile__name");
 export const profileOccupation = (".profile__occupation");
 export const profileAvatar = (".profile__avatar");
 export const editButton = container.querySelector(".profile__edit-button");
@@ -27,30 +29,30 @@ export const popupAddSubmitButton = document.getElementById("#popupAddSubmit");
 export const popupEditSubmitButton = document.getElementById("#popupEditSubmit");
 
 
-export const initialCards = [
-  {
-    Title: "Архыз",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    Title: "Челябинская область",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    Title: "Иваново",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    Title: "Камчатка",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    Title: "Холмогорский район",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    Title: "Байкал",
-    Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+// export const initialCards = [
+//   {
+//     Title: "Архыз",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//   },
+//   {
+//     Title: "Челябинская область",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//   },
+//   {
+//     Title: "Иваново",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//   },
+//   {
+//     Title: "Камчатка",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//   },
+//   {
+//     Title: "Холмогорский район",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//   },
+//   {
+//     Title: "Байкал",
+//     Link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//   },
+// ];
 
