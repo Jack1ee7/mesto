@@ -10,7 +10,6 @@ import PopupDelete from "../components/PopupDelete.js";
 import { Card } from "../components/Card.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from '../components/Api';
-console.log(inputsFormEdit)
 //API
 const api = new Api ({
   baseUrl: 'https://nomoreparties.co/v1/cohort-29',
