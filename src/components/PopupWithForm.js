@@ -13,6 +13,7 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   };
 
+
   _getInputValues() {
     this._data = {};
     this._inputList.forEach(input => this._data[input.name] = input.value);
@@ -23,6 +24,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
+      this.renderLoading(true, this._form.querySelector('.popup__form-submit-button'), "Сохранить")
       this._handleFormSubmit(this._getInputValues());
     });
   };

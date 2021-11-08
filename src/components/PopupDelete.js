@@ -15,19 +15,13 @@ export default class PopupWithForm extends Popup {
   open(id) {
     super.open();
     this._id = id;
-    console.log(this._id);
   }
-  // _getInputValues() {
-  //   this._data = {};
-  //   this._inputList.forEach(input => this._data[input.name] = input.value);
-  //   return this._data;
-  // };
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this._handleDelete();
+      this._handleDelete(this._id);
     });
   };
 };

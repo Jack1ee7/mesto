@@ -21,6 +21,12 @@ export const editButton = container.querySelector(".profile__edit-button");
 export const addButton = container.querySelector(".profile__add-button");
 export const avatarButton = container.querySelector(".profile__avatar");
 
+export const popupAvatarSubmitButton = document.getElementById("#popupAvatarSubmit");
+export const popupDeleteSubmitButton = document.getElementById("#popupDeleteSubmit");
+export const popupAddSubmitButton = document.getElementById("#popupAddSubmit");
+export const popupEditSubmitButton = document.getElementById("#popupEditSubmit");
+
+
 export const initialCards = [
   {
     Title: "Архыз",

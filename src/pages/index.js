@@ -3,7 +3,7 @@ import html from "../index.html";
 
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import { picturePopup, config, formAdd, formEdit, formAvatar, profileName, profileOccupation, profileAvatar, editButton, addButton, avatarButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
+import { popupAddSubmitButton, popupDeleteSubmitButton, popupEditSubmitButton, popupAvatarSubmitButton ,picturePopup, config, formAdd, formEdit, formAvatar, profileName, profileOccupation, profileAvatar, editButton, addButton, avatarButton, picturesContainer, pictureTemplate } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupDelete from "../components/PopupDelete.js";
@@ -25,19 +25,13 @@ api.getAllData()
   .then(([userData, cardList]) => {
     // profileId = userData._id;
     userInfo.setUserInfo(userData)
+    userInfo.setUserAvatar(userData)
     cardList.reverse();
-    cardsSection.addItem(cardsSection.renderCard(cardList))
+    cardsSection.renderCard(cardList)
   })
   .catch((err) => {
     console.log(`Ошибка ${err}`);
   });
-//Validation
-const formAddValidation = new FormValidator(config, formAdd);
-const formEditValidation = new FormValidator(config, formEdit);
-const formAvatarValidation = new FormValidator(config, formAvatar);
-formEditValidation.enableValidation();
-formAddValidation.enableValidation();
-formAvatarValidation.enableValidation();
 
 //userinfo
 const userInfo = new UserInfo (profileName, profileOccupation, profileAvatar);
@@ -48,9 +42,19 @@ popupWithImage.setEventListeners();
 
 //popupEdit
 const popupWithFormEdit = new PopupWithForm('.popup_type_edit', (data) => {
-  userInfo.setUserInfo(data);
-  api.sendProfileInfo(data);
-  popupWithFormEdit.close();
+  popupWithFormEdit.renderLoading(true, popupEditSubmitButton)
+  api.sendProfileInfo(data)
+    .then(() => {
+      userInfo.setUserInfo(data);
+    })
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
+      popupWithFormEdit.renderLoading(false, popupEditSubmitButton, "Сохранить")
+    })
+    .finally(() => {
+      popupWithFormEdit.close()
+      popupWithFormEdit.renderLoading(false, popupEditSubmitButton, "Сохранить")
+  });
 })
 
 editButton.addEventListener('click', () => {
@@ -62,11 +66,19 @@ popupWithFormEdit.setEventListeners();
 
 //popupAddCard
 const popupWithFormAdd = new PopupWithForm('.popup_type_add', (data) => {
+  popupWithFormAdd.renderLoading(true, popupAddSubmitButton)
   api.sendNewCard(data)
     .then((item) => {
       cardsSection.addItem(createCard(item));
+    })
+    .catch((err) => {
+      popupWithFormAdd.renderLoading(false, popupAddSubmitButton, "Создать")
+      console.log(`Ошибка ${err}`);
+    })
+    .finally(() => {
+      popupWithFormAdd.close();
+      popupWithFormAdd.renderLoading(false, popupAddSubmitButton, "Создать")
     });
-  popupWithFormAdd.close();
 })
 
 addButton.addEventListener('click', () => {
@@ -78,9 +90,18 @@ popupWithFormAdd.setEventListeners();
 
 //popupAvatar
 const popupAvatar = new PopupWithForm('.popup_type_avatar', (data) => {
-  userInfo.setUserInfo(data);
-  api.sendAvatar(data);
-  popupAvatar.close();
+  popupAvatar.renderLoading(true, popupAvatarSubmitButton)
+  api.sendAvatar(data).then(() => {
+    userInfo.setUserAvatar(data);
+  })
+  .catch((err) => {
+    console.log(`Ошибка ${err}`);
+    popupAvatar.renderLoading(false, popupAvatarSubmitButton, "Сохранить")
+  })
+  .finally(() => {
+    popupAvatar.close();
+    popupAvatar.renderLoading(false, popupAvatarSubmitButton, "Сохранить")
+  });
 })
 
 avatarButton.addEventListener('click', () => {
@@ -92,10 +113,20 @@ popupAvatar.setEventListeners();
 
 //popupDeleteCard
 const popupDelete = new PopupDelete('.popup_type_delete', (id) => {
-  console.log(id);
+  popupDelete.renderLoading(true, popupDeleteSubmitButton)
   api.deleteCard(id)
-    .then(() => {
+    // .then(() => {
+    //   document.getElementById(id).remove()
+    //   popupDelete.close();
+    // })
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
+      popupDelete.renderLoading(false, popupDeleteSubmitButton, "Да")
+    })
+    .finally(() => {
       document.getElementById(id).remove()
+      popupDelete.close();
+      popupDelete.renderLoading(false, popupDeleteSubmitButton, "Да")
     })
 });
 popupDelete.setEventListeners();
@@ -105,8 +136,8 @@ function handleCardClick(link, title) {
   popupWithImage.open(link, title);
 }
 
-function handleOpenDelete() {
-  popupDelete.open();
+function handleOpenDelete(id) {
+  popupDelete.open(id);
 }
 
 function createCard(item) {
@@ -121,3 +152,10 @@ const cardsSection = new Section ({
   }
 }, picturesContainer);
 
+//Validation
+const formAddValidation = new FormValidator(config, formAdd);
+const formEditValidation = new FormValidator(config, formEdit);
+const formAvatarValidation = new FormValidator(config, formAvatar);
+formEditValidation.enableValidation();
+formAddValidation.enableValidation();
+formAvatarValidation.enableValidation();

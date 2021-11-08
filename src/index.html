@@ -16,7 +16,10 @@
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+          <img src="./images/avatar-edit-icon.svg" alt="Редактировать" class="profile__avatar-edit-ico">
+        </div>
         <div class="profile__info-text">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__occupation">Исследователь океана</p>
@@ -50,7 +53,7 @@
           <input class="popup__input" type="text" name="about" id="occupation" placeholder="Подпись" required minlength="2" maxlength="200">
           <span class="popup__error" id="occupation-error"></span>
         </div>
-        <button class="popup__form-submit-button" type="submit">Сохранить</button>
+        <button class="popup__form-submit-button" type="submit" id="#popupEditSubmit">Сохранить</button>
       </form>
     </div>
   </section>
@@ -68,7 +71,7 @@
           <input class="popup__input" type="url" name="link" id="link" placeholder="Ссылка на картинку" required>
           <span class="popup__error" id="link-error"></span>
         </div>
-          <button class="popup__form-submit-button" type="submit">Создать</button>
+          <button class="popup__form-submit-button" type="submit" id="#popupAddSubmit">Создать</button>
       </form>
     </div>
   </section>
@@ -94,7 +97,7 @@
           <input class="popup__input" type="url" name="avatar" id="avatar" placeholder="Ссылка на аватар" required>
           <span class="popup__error" id="avatar-error"></span>
         </div>
-        <button class="popup__form-submit-button" type="submit">Сохранить</button>
+        <button class="popup__form-submit-button" type="submit" id="#popupAvatarSubmit">Сохранить</button>
       </form>
     </div>
   </section>
@@ -104,7 +107,7 @@
       <button class="popup__close-button" type="reset" id="#y"></button>
       <h2 class="popup__form-title">Вы уверены?</h2>
       <form class="popup__form popup__form_type_delete" name="deleteCard" novalidate>
-        <button class="popup__form-submit-button" type="submit">Да</button>
+        <button class="popup__form-submit-button" type="submit" id="#popupDeleteSubmit">Да</button>
       </form>
     </div>
   </section>

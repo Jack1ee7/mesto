@@ -47,7 +47,7 @@ export class Card {
       this._toggleLike();
     })
     this._element.querySelector('.pictures__delete-button').addEventListener('click', (event) => {
-      this._handleOpenDelete();
+      this._handleOpenDelete(event.target.closest('.pictures__item').id);
     })
     this._element.querySelector('.pictures__image').addEventListener('click', () => {
       this._handleCardClick(this._link, this._title);

@@ -34,4 +34,12 @@ export default class Popup {
       this.close();
     }
   }
+  renderLoading(isLoading, element, defaultText) {
+    if (isLoading) {
+      element.textContent = "Сохранение...";
+    }
+    else {
+      element.textContent = defaultText;
+    }
+  }
 }
