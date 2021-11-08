@@ -1,5 +1,4 @@
 import { picturePopup } from "../utils/constants.js";
-// import Popup from "./Popup.js";
 
 export class Card {
   constructor(data, templateSelector, api, handleCardClick, handleOpenDelete) {
@@ -21,7 +20,6 @@ export class Card {
   }
 
   _toggleLike() {
-    // this._likeButton.classList.toggle('pictures__like-button_status_active');
     if (!(this._likeButton.classList.contains('pictures__like-button_status_active'))) {
       this._api.addLike(this._cardId)
         .then((data) => {

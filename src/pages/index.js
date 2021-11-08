@@ -23,7 +23,6 @@ const api = new Api ({
 
 api.getAllData()
   .then(([userData, cardList]) => {
-    // profileId = userData._id;
     userInfo.setUserInfo(userData)
     userInfo.setUserAvatar(userData)
     cardList.reverse();
@@ -115,10 +114,6 @@ popupAvatar.setEventListeners();
 const popupDelete = new PopupDelete('.popup_type_delete', (id) => {
   popupDelete.renderLoading(true, popupDeleteSubmitButton)
   api.deleteCard(id)
-    // .then(() => {
-    //   document.getElementById(id).remove()
-    //   popupDelete.close();
-    // })
     .catch((err) => {
       console.log(`Ошибка ${err}`);
       popupDelete.renderLoading(false, popupDeleteSubmitButton, "Да")
